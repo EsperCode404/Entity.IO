@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas"></canvas>
+    <div class="scanlines"></div>
+    <div id="ui-layer">
+      
+      <!-- TOP BAR -->
+      <div id="top-bar" class="panel">
+        <div class="sys-info">
+          <span class="label">SYS.UPTIME:</span> <span id="uptime">00:00:00</span>
+          <span class="divider">|</span>
+          <span class="label">SESSION:</span> <span class="value">SID-89A-X</span>
+          <span class="divider">|</span>
+          <span class="label">OPERATOR:</span> <span id="operator-name" class="value">UNKNOWN</span>
+        </div>
+        <div class="entity-status">
+          <span class="label">ACTIVE LINK:</span> <span class="value highlight-cyan">OMEGA-7</span>
+        </div>
+        <div class="connection-info">
+          <span class="signal-bars">
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+            <div class="bar active"></div>
+            <div class="bar"></div>
+          </span>
+          <span class="status-text highlight-green">SECURE</span>
+        </div>
+      </div>
+
+      <!-- LEFT SIDEBAR -->
+      <div id="left-panel" class="panel">
+        <div class="panel-header">MODEL REGISTRY</div>
+        <div class="search-box">
+          <input type="text" placeholder="Search entities..." id="entity-search">
+        </div>
+        <div class="entity-list">
+          <div class="entity-item active">
+            <div class="entity-name">OMEGA-7</div>
+            <div class="entity-state state-online">ONLINE</div>
+          </div>
+          <div class="entity-item">
+            <div class="entity-name">NEXUS-V</div>
+            <div class="entity-state state-idle">IDLE</div>
+          </div>
+          <div class="entity-item">
+            <div class="entity-name">ECHO-PRIME</div>
+            <div class="entity-state state-locked">LOCKED</div>
+          </div>
+          <div class="entity-item">
+            <div class="entity-name">VOID-WALKER</div>
+            <div class="entity-state state-offline">OFFLINE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER PANEL (TERMINAL) -->
+      <div id="center-panel" class="panel">
+        <div class="panel-header">
+          MAIN TERMINAL <span class="blink-cursor">_</span>
+        </div>
+        <div id="terminal-output">
+          <div class="message system">
+            <div class="msg-header">[ SYSTEM ]</div>
+            <div class="msg-body">> Secure connection established.<br>> Encryption key verified.<br>> Awaiting operator input.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL (PROFILE) -->
+      <div id="right-panel" class="panel">
+        <div class="panel-header">ENTITY PROFILE</div>
+        <div class="profile-content">
+          <div class="profile-img-placeholder">
+            <div class="hex-grid"></div>
+            <span>O-7</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">CLASS:</span>
+            <span class="stat-value">Tactical Analyst</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">MEMORY:</span>
+            <span class="stat-value">84.2 TB / 100 TB</span>
+          </div>
+          <div class="stat-bar-container">
+            <div class="stat-bar-label">COGNITIVE LOAD</div>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill" style="width: 42%;"></div>
+            </div>
+          </div>
+          <div class="stat-bar-container">
+            <div class="stat-bar-label">SYNCHRONIZATION</div>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill highlight-amber" style="width: 88%;"></div>
+            </div>
+          </div>
+          <div class="activity-log">
+            <div class="log-header">LATEST ACTIVITY</div>
+            <div class="log-entry">> 08:42 - Security scan complete</div>
+            <div class="log-entry">> 07:15 - Core logic update</div>
+            <div class="log-entry">> 06:00 - Scheduled maintenance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM COMMAND BAR -->
+      <div id="bottom-bar" class="panel">
+        <button id="btn-attach" class="cmd-btn" title="Attach Data">[+]</button>
+        <button id="btn-voice" class="cmd-btn" title="Voice Input">[MIC]</button>
+        <div class="input-wrapper">
+          <span class="prompt">></span>
+          <input type="text" id="cmd-input" placeholder="Enter command sequence or query..." autocomplete="off">
+        </div>
+        <button id="btn-send" class="cmd-btn primary">TRANSMIT</button>
+      </div>
+
+    </div>
+  </div>
+  <script src="GameObject.js"></script>
+  <script src="Particle.js"></script>
+  <script src="CommandCenter.js"></script>
+  <script src="Game.js"></script>
+  <script>
+    const game = new Game(document.getElementById('gameCanvas'));
+    window.game = game;
+  </script>
+</body>
+</html>
