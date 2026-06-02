@@ -44,7 +44,7 @@ class CommandCenter {
       }
     });
     
-    // Dummy buttons
+    // UI Buttons
     document.getElementById('btn-attach').addEventListener('click', () => {
       this.appendMessage('system', '> Attachment protocol initiated. Waiting for file stream...');
     });
@@ -63,24 +63,85 @@ class CommandCenter {
     }, 1000);
   }
 
-  handleCommand() {
+  // Targets your locally created 'ami' model tag specifically
+  getActiveModel() {
+    return 'ami'; 
+  }
+
+  async handleCommand() {
     if (this.isTyping) return;
     
     const text = this.cmdInput.value.trim();
     if (!text) return;
     
     this.cmdInput.value = '';
-    
-    // Add user message
     this.appendMessage('user', `> ${text}`);
     
-    // Simulate AI processing and response
+    if (text.toLowerCase() === 'clear') {
+      this.terminalOutput.innerHTML = '';
+      this.isTyping = false;
+      return;
+    }
+    
     this.isTyping = true;
-    setTimeout(() => {
-      this.generateDummyResponse(text);
-    }, 600 + Math.random() * 800);
+    const systemNotice = this.appendMessage('system', '> Query dispatched. Establishing LLM datastream...');
+    
+    try {
+      const activeModelTag = this.getActiveModel();
+      
+      // 1. Establish connection with stream: true
+      const response = await fetch('http://127.0.0.1:11434/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: activeModelTag,
+          prompt: text,
+          stream: true // Enabled real-time chunking
+        })
+      });
+
+      if (!response.ok) throw new Error(`HTTP Error Status: ${response.status}`);
+      if (systemNotice) systemNotice.remove();
+
+      // 2. Create an empty Entity Response element to stream text into
+      // Create the entity response block and capture its body container directly
+      const entityBodyElement = this.appendMessage('entity', '', true);
+      
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n');
+        
+        for (const line of lines) {
+          if (line.trim() !== '') {
+            const parsed = JSON.parse(line);
+            if (parsed.response) {
+              // Directly inject raw tokens without artificial typing speed delays
+              entityBodyElement.innerHTML += parsed.response.replace(/\n/g, '<br>');
+              this.scrollToBottom();
+            }
+          }
+        }
+      }
+      
+    } catch (error) {
+      if (systemNotice) systemNotice.remove();
+      console.error("Ollama Pipeline Error:", error);
+      
+      const errorDiagnostic = `> EXCEPTION DETECTED: Unable to resolve local pipeline node.<br>` +
+                              `> TARGET PORT: http://127.0.0.1:11434/api/generate`;
+      this.appendMessage('system', errorDiagnostic);
+    } finally {
+      this.isTyping = false;
+    }
   }
 
+  // Modified appendMessage to handle direct real-time rendering safely
   appendMessage(role, text, isTypingEffect = false) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${role}`;
@@ -93,7 +154,7 @@ class CommandCenter {
       const op = this.operatorName.textContent;
       headerText = `[ COMMAND INPUT ] // OPERATOR: ${op}`;
     } else if (role === 'entity') {
-      headerText = '[ ENTITY RESPONSE ] // MODEL: OMEGA-7';
+      headerText = `[ ENTITY RESPONSE ] // MODEL: OMEGA-7 (AMI)`;
     }
     headerDiv.textContent = headerText;
     
@@ -104,12 +165,16 @@ class CommandCenter {
     msgDiv.appendChild(bodyDiv);
     this.terminalOutput.appendChild(msgDiv);
     
-    if (isTypingEffect) {
+    // If it's the streaming AI response, we skip the artificial typing effect entirely
+    if (isTypingEffect && role !== 'entity') {
       this.typeText(bodyDiv, text, 0);
     } else {
       bodyDiv.innerHTML = text.replace(/\n/g, '<br>');
       this.scrollToBottom();
     }
+    
+    // Return the body div directly so our handleCommand loop can inject text instantly
+    return bodyDiv; 
   }
 
   typeText(element, text, index) {
@@ -118,10 +183,12 @@ class CommandCenter {
     }
     
     if (index < text.length) {
-      // Handle simulated line breaks
       if (text.substr(index, 4) === '<br>') {
         element.innerHTML += '<br>';
         index += 4;
+      } else if (text.substr(index, 1) === '\n') {
+        element.innerHTML += '<br>';
+        index++;
       } else {
         element.innerHTML += text.charAt(index);
         index++;
@@ -129,8 +196,8 @@ class CommandCenter {
       
       this.scrollToBottom();
       
-      // Variable typing speed
-      const delay = Math.random() * 30 + 10;
+      // Fast futuristic typing speed
+      const delay = Math.random() * 15 + 5;
       setTimeout(() => this.typeText(element, text, index), delay);
     } else {
       this.isTyping = false;
@@ -140,32 +207,5 @@ class CommandCenter {
 
   scrollToBottom() {
     this.terminalOutput.scrollTop = this.terminalOutput.scrollHeight;
-  }
-
-  generateDummyResponse(input) {
-    const lowerInput = input.toLowerCase();
-    let response = '';
-    
-    if (lowerInput.includes('status') || lowerInput.includes('diagnostic')) {
-      response = '> Running diagnostics...<br>> Core logic: NOMINAL<br>> Memory banks: 84.2% UTILIZED<br>> Threat assessment: LOW<br>> Awaiting further directives.';
-    } else if (lowerInput.includes('hello') || lowerInput.includes('greet')) {
-      response = `> Greetings, Operator ${this.operatorName.textContent}.<br>> I am OMEGA-7, Tactical Analyst model.<br>> How may I assist your operations today?`;
-    } else if (lowerInput.includes('clear')) {
-      this.terminalOutput.innerHTML = '';
-      this.isTyping = false;
-      return;
-    } else if (lowerInput.includes('help')) {
-      response = '> AVAILABLE COMMANDS:<br>> status - Run system diagnostics<br>> clear - Wipe terminal history<br>> analyze [target] - Initiate tactical analysis<br>> shutdown - Terminate session';
-    } else {
-      const genericResponses = [
-        "> Affirmative. Processing request data...<br>> Logging to central database.",
-        "> Query received. Calculating optimal parameters...<br>> Task queued for execution.",
-        "> Warning: Insufficient clearance for deep memory access.<br>> Proceeding with surface-level analysis.",
-        "> Acknowledged.<br>> Adjusting synchronization matrices to accommodate new parameters."
-      ];
-      response = genericResponses[Math.floor(Math.random() * genericResponses.length)];
-    }
-    
-    this.appendMessage('entity', response, true);
   }
 }
