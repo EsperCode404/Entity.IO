@@ -11,7 +11,7 @@ Entity.IO is a highly stylized, futuristic sci-fi terminal interface engineered 
 ### Core Operator Interface
 The main tactical node provides a multi-panel layout monitoring model statuses, active session protocols, and synchronization vectors:
 
-![Entity.IO Core Command Dashboard](./assets/5.png)
+![Entity.IO Core Command Dashboard](./assets/1.png)
 
 ---
 
@@ -20,11 +20,11 @@ The interface dynamic feeds operator input straight through localized AI respons
 
 | 01. Connection Node Established | 02. Encryption Core Handshake |
 | :---: | :---: |
-| ![Stage 1 Connection](./assets/1.png) | ![Stage 2 Handshake](./assets/2.png) |
+| ![Stage 1 Connection](./assets/2.png) | ![Stage 2 Handshake](./assets/3.png) |
 
 | 03. Model Activation Matrix | 04. Local AI Response Routing |
 | :---: | :---: |
-| ![Stage 3 Model Online](./assets/3.png) | ![Stage 4 AI Stream Response](./assets/4.png) |
+| ![Stage 3 Model Online](./assets/4.png) | ![Stage 4 AI Stream Response](./assets/5.png) |
 
 ---
 
