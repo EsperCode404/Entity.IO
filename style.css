@@ -509,3 +509,102 @@ body, html {
     display: none;
   }
 }
+
+/* ==========================================
+   MARKDOWN & CODE RENDERING STYLES
+   ========================================== */
+
+.msg-body strong {
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.msg-body code {
+  font-family: var(--font-mono);
+  background: rgba(0, 255, 204, 0.1);
+  color: var(--cyan);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.msg-body pre {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--panel-border);
+  border-left: 3px solid var(--cyan);
+  border-radius: 4px;
+  padding: 12px;
+  margin: 10px 0;
+  overflow-x: auto;
+}
+
+.msg-body pre code {
+  background: transparent;
+  border: none;
+  color: #d0e8ff;
+  padding: 0;
+  font-size: 13px;
+  display: block;
+  white-space: pre;
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 255, 204, 0.08);
+  border: 1px solid var(--panel-border);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+
+.code-block-header + pre {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: none;
+}
+
+.btn-copy-code {
+  background: rgba(0, 255, 204, 0.1);
+  border: 1px solid var(--panel-border);
+  color: var(--cyan);
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.btn-copy-code:hover {
+  background: var(--cyan);
+  color: #000;
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.btn-copy-code.copied {
+  background: var(--green);
+  border-color: var(--green);
+  color: #000;
+  box-shadow: 0 0 8px var(--green);
+}
+
+.msg-body ul, .msg-body ol {
+  margin: 8px 0 8px 20px;
+}
+
+.msg-body li {
+  margin-bottom: 4px;
+}
+

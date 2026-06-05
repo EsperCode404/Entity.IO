@@ -21,7 +21,7 @@
           <span class="label">OPERATOR:</span> <span id="operator-name" class="value">UNKNOWN</span>
         </div>
         <div class="entity-status">
-          <span class="label">ACTIVE LINK:</span> <span class="value highlight-cyan">OMEGA-7</span>
+          <span class="label">ACTIVE LINK:</span> <span id="active-model-name" class="value highlight-cyan">OMEGA-7</span>
         </div>
         <div class="connection-info">
           <span class="signal-bars">
@@ -79,33 +79,35 @@
         <div class="profile-content">
           <div class="profile-img-placeholder">
             <div class="hex-grid"></div>
-            <span>O-7</span>
+            <span id="profile-initials">O-7</span>
           </div>
           <div class="stat-row">
             <span class="stat-label">CLASS:</span>
-            <span class="stat-value">Tactical Analyst</span>
+            <span id="stat-class" class="stat-value">Tactical Analyst</span>
           </div>
           <div class="stat-row">
             <span class="stat-label">MEMORY:</span>
-            <span class="stat-value">84.2 TB / 100 TB</span>
+            <span id="stat-memory" class="stat-value">84.2 TB / 100 TB</span>
           </div>
           <div class="stat-bar-container">
             <div class="stat-bar-label">COGNITIVE LOAD</div>
             <div class="stat-bar-bg">
-              <div class="stat-bar-fill" style="width: 42%;"></div>
+              <div id="cognitive-load-fill" class="stat-bar-fill" style="width: 0%;"></div>
             </div>
           </div>
           <div class="stat-bar-container">
             <div class="stat-bar-label">SYNCHRONIZATION</div>
             <div class="stat-bar-bg">
-              <div class="stat-bar-fill highlight-amber" style="width: 88%;"></div>
+              <div id="sync-fill" class="stat-bar-fill highlight-amber" style="width: 100%;"></div>
             </div>
           </div>
           <div class="activity-log">
             <div class="log-header">LATEST ACTIVITY</div>
-            <div class="log-entry">> 08:42 - Security scan complete</div>
-            <div class="log-entry">> 07:15 - Core logic update</div>
-            <div class="log-entry">> 06:00 - Scheduled maintenance</div>
+            <div id="activity-log-entries">
+              <div class="log-entry">> 08:42 - Security scan complete</div>
+              <div class="log-entry">> 07:15 - Core logic update</div>
+              <div class="log-entry">> 06:00 - Scheduled maintenance</div>
+            </div>
           </div>
         </div>
       </div>
