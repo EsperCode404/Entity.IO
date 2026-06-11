@@ -538,11 +538,19 @@ class CommandCenter {
       if (systemNotice) systemNotice.remove();
       console.error("Ollama Pipeline Error:", error);
 
-      const errorDiagnostic = `> EXCEPTION DETECTED: Unable to resolve local pipeline node.\n` +
-        `> TARGET PORT: http://127.0.0.1:11434/api/generate\n` +
-        `> MODEL TARGET: ${this.activeModel.toUpperCase()}\n` +
-        `> FIX: Run Ollama with OLLAMA_ORIGINS=* and serve via HTTP server (not file://).`;
-      this.appendMessage('system', errorDiagnostic);
+      // === LINE 541 CRITICAL OVERHAUL PROTOCOL ===
+      const brokenModel = (this.activeModel || 'ENTITY').toUpperCase();
+      const errorDiagnostic =
+        `// ------------------- CRITICAL SYSTEM FAULT -------------------\n` +
+        `[ ALERT ] CORE LINK COOLDOWN // SYNCHRONIZATION HARD FAILURE\n` +
+        `// -------------------------------------------------------------\n` +
+        `> TERMINAL STATUS : DISCONNECTED\n` +
+        `> TARGET SUITE    : SYSTEM.LOCAL_NODE.${brokenModel}\n` +
+        `// -------------------------------------------------------------\n` +
+        `> LOG DATA        : OLLAMA CONSOLE OFFLINE ON PORT 11434\n` +
+        `> REMEDIAL ACTION : INITIALIZE LOCAL ENGINE // RESYNC HANDSHAKE`;
+
+      this.appendMessage('system-error', errorDiagnostic);
 
       if (this.cognitiveLoadFill) this.cognitiveLoadFill.style.width = '0%';
       if (this.syncFill) this.syncFill.style.width = '0%';
