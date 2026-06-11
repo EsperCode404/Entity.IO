@@ -451,7 +451,9 @@ class CommandCenter {
     if (this.syncFill) this.syncFill.style.width = '12%';
     this.addActivityLog(`SYS.LOG: Initializing synchronization with ${this.activeModel.toUpperCase()}...`);
 
-    const systemNotice = this.appendMessage('system', '> Query dispatched. Establishing LLM datastream...');
+    // Model Thinking Display Message
+    const modelLabel = (this.activeModel || 'Entity').toUpperCase();
+    const systemNotice = this.appendMessage('system', `[ ${modelLabel} ] thinking...`);
 
     try {
       // Target verification inside CommandCenter.js

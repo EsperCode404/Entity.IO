@@ -17,7 +17,8 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -47,7 +48,7 @@ body, html {
 .scanlines {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
   background-size: 100% 4px;
   pointer-events: none;
   z-index: 10;
@@ -70,7 +71,7 @@ body, html {
   padding: 15px;
 }
 
-#ui-layer > * {
+#ui-layer>* {
   pointer-events: auto;
 }
 
@@ -132,7 +133,9 @@ body, html {
   padding: 0 20px;
 }
 
-.sys-info, .entity-status, .connection-info {
+.sys-info,
+.entity-status,
+.connection-info {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -153,9 +156,20 @@ body, html {
   margin: 0 5px;
 }
 
-.highlight-cyan { color: var(--cyan); text-shadow: 0 0 5px var(--cyan); }
-.highlight-green { color: var(--green); text-shadow: 0 0 5px var(--green); }
-.highlight-amber { color: var(--amber); text-shadow: 0 0 5px var(--amber); }
+.highlight-cyan {
+  color: var(--cyan);
+  text-shadow: 0 0 5px var(--cyan);
+}
+
+.highlight-green {
+  color: var(--green);
+  text-shadow: 0 0 5px var(--green);
+}
+
+.highlight-amber {
+  color: var(--amber);
+  text-shadow: 0 0 5px var(--amber);
+}
 
 .signal-bars {
   display: flex;
@@ -168,11 +182,27 @@ body, html {
   width: 4px;
   background: var(--text-dim);
 }
-.signal-bars .bar.active { background: var(--green); box-shadow: 0 0 5px var(--green); }
-.signal-bars .bar:nth-child(1) { height: 6px; }
-.signal-bars .bar:nth-child(2) { height: 10px; }
-.signal-bars .bar:nth-child(3) { height: 14px; }
-.signal-bars .bar:nth-child(4) { height: 18px; }
+
+.signal-bars .bar.active {
+  background: var(--green);
+  box-shadow: 0 0 5px var(--green);
+}
+
+.signal-bars .bar:nth-child(1) {
+  height: 6px;
+}
+
+.signal-bars .bar:nth-child(2) {
+  height: 10px;
+}
+
+.signal-bars .bar:nth-child(3) {
+  height: 14px;
+}
+
+.signal-bars .bar:nth-child(4) {
+  height: 18px;
+}
 
 /* Left Sidebar */
 #left-panel {
@@ -208,8 +238,13 @@ body, html {
   gap: 8px;
 }
 
-.entity-list::-webkit-scrollbar { width: 4px; }
-.entity-list::-webkit-scrollbar-thumb { background: var(--cyan); }
+.entity-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.entity-list::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+}
 
 .entity-item {
   display: flex;
@@ -240,10 +275,29 @@ body, html {
   letter-spacing: 1px;
 }
 
-.state-online { background: rgba(57, 255, 20, 0.1); color: var(--green); border: 1px solid var(--green); }
-.state-idle { background: rgba(255, 179, 0, 0.1); color: var(--amber); border: 1px solid var(--amber); }
-.state-locked { background: rgba(255, 51, 51, 0.1); color: var(--red); border: 1px solid var(--red); }
-.state-offline { background: rgba(80, 112, 128, 0.1); color: var(--text-dim); border: 1px solid var(--text-dim); }
+.state-online {
+  background: rgba(57, 255, 20, 0.1);
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.state-idle {
+  background: rgba(255, 179, 0, 0.1);
+  color: var(--amber);
+  border: 1px solid var(--amber);
+}
+
+.state-locked {
+  background: rgba(255, 51, 51, 0.1);
+  color: var(--red);
+  border: 1px solid var(--red);
+}
+
+.state-offline {
+  background: rgba(80, 112, 128, 0.1);
+  color: var(--text-dim);
+  border: 1px solid var(--text-dim);
+}
 
 /* Center Panel */
 #center-panel {
@@ -259,8 +313,13 @@ body, html {
   gap: 20px;
 }
 
-#terminal-output::-webkit-scrollbar { width: 4px; }
-#terminal-output::-webkit-scrollbar-thumb { background: var(--cyan); }
+#terminal-output::-webkit-scrollbar {
+  width: 4px;
+}
+
+#terminal-output::-webkit-scrollbar-thumb {
+  background: var(--cyan);
+}
 
 .message {
   display: flex;
@@ -270,8 +329,15 @@ body, html {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .msg-header {
@@ -288,22 +354,48 @@ body, html {
   word-wrap: break-word;
 }
 
-.message.system .msg-header { color: var(--text-dim); }
-.message.system .msg-body { border-color: var(--text-dim); color: var(--text-main); }
+.message.system .msg-header {
+  color: var(--text-dim);
+}
 
-.message.user .msg-header { color: var(--green); }
-.message.user .msg-body { border-color: var(--green); color: #fff; }
+.message.system .msg-body {
+  border-color: var(--text-dim);
+  color: var(--text-main);
+}
 
-.message.entity .msg-header { color: var(--cyan); }
-.message.entity .msg-body { border-color: var(--cyan); color: var(--cyan); text-shadow: 0 0 2px rgba(0, 255, 204, 0.5); }
+.message.user .msg-header {
+  color: var(--green);
+}
+
+.message.user .msg-body {
+  border-color: var(--green);
+  color: #fff;
+}
+
+.message.entity .msg-header {
+  color: var(--cyan);
+}
+
+.message.entity .msg-body {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  text-shadow: 0 0 2px rgba(0, 255, 204, 0.5);
+}
 
 .blink-cursor {
   animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Right Panel */
@@ -348,8 +440,13 @@ body, html {
   padding-bottom: 5px;
 }
 
-.stat-label { color: var(--text-dim); }
-.stat-value { color: var(--cyan); }
+.stat-label {
+  color: var(--text-dim);
+}
+
+.stat-value {
+  color: var(--cyan);
+}
 
 .stat-bar-container {
   display: flex;
@@ -486,6 +583,7 @@ body, html {
     overflow-y: auto;
     pointer-events: auto;
   }
+
   #right-panel {
     min-height: 300px;
   }
@@ -502,9 +600,11 @@ body, html {
       "bottom"
       "right";
   }
+
   #left-panel {
     min-height: 200px;
   }
+
   .sys-info {
     display: none;
   }
@@ -567,7 +667,7 @@ body, html {
   margin-top: 12px;
 }
 
-.code-block-header + pre {
+.code-block-header+pre {
   margin-top: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
@@ -600,7 +700,8 @@ body, html {
   box-shadow: 0 0 8px var(--green);
 }
 
-.msg-body ul, .msg-body ol {
+.msg-body ul,
+.msg-body ol {
   margin: 8px 0 8px 20px;
 }
 
@@ -608,3 +709,61 @@ body, html {
   margin-bottom: 4px;
 }
 
+/* ==========================================
+   HIGH-TECH RADAR PULSE OVERLAY (FIXED POSITIONING)
+   ========================================== */
+
+/* 1. Targets the text block (the .msg-body inside the system container) */
+.message.system .msg-body {
+  position: relative;
+  /* DYNAMIC ALIGNMENT VECTOR */
+  display: flex !important;
+  /* Overrides conflicting layout rules */
+  align-items: center !important;
+  /* Vertically centers the text *and* the dot */
+  justify-content: flex-start;
+  padding-left: 45px !important;
+  /* Heavy padding to pull text *off* that left border */
+  margin-top: 15px;
+  /* Adds space above, pushing the whole unit down into view */
+}
+
+/* 2. Lock the dot exactly to the center of the aligned text row */
+.message.system .msg-body::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  /* Positions the dot cleanly in the new padding deadzone */
+
+  /* Precision alignment against Flexbox parent */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  /* Snap-center to the text row */
+
+  width: 8px;
+  height: 8px;
+  background-color: #00ff66;
+  /* Pure Cyberpunk Green */
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff66, 0 0 18px #00ff66;
+  animation: radarPulse 1.2s infinite ease-in-out;
+}
+
+/* 3. The pulse engine keyframes (already optimal) */
+@keyframes radarPulse {
+  0% {
+    opacity: 0.3;
+    transform: translateY(-50%) scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 0 0 14px #00ff66, 0 0 25px #00ff66;
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: translateY(-50%) scale(0.85);
+  }
+}
