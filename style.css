@@ -767,3 +767,73 @@ html {
     transform: translateY(-50%) scale(0.85);
   }
 }
+
+/* ==========================================
+   HIGH-GLOW RED ALERT HAZARD TELEMETRY (BOX OUTLINE)
+   ========================================== */
+
+/* 1. Transforms the system error box into a fully self-contained glowing emergency card */
+.message.system-error .msg-body {
+  position: relative;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start;
+  padding-left: 45px !important;
+  margin-top: 15px;
+  margin-bottom: 5px;
+
+  /* FULL OUTLINE CRITICAL PROTOCOL */
+  background: rgba(15, 5, 5, 0.75) !important;
+  /* Deep ominous translucent red-tinted backing */
+  border: 1px solid #ff3333 !important;
+  /* Full frame outer border tracing */
+  border-left: 4px solid #ff3333 !important;
+  /* Thickens the left edge structural line */
+  border-radius: 4px;
+  /* Matches your core terminal panel curves */
+
+  /* NEON RADIATION FIELDS */
+  color: #ff3333 !important;
+  /* Ignites the text characters to warning crimson */
+  text-shadow: 0 0 6px rgba(255, 51, 51, 0.6);
+  /* Text emission glow */
+  box-shadow: 0 0 15px rgba(255, 51, 51, 0.15), inset 0 0 10px rgba(255, 51, 51, 0.1);
+  /* Ambient outer box glow + subtle inner hull saturation */
+}
+
+/* 2. Hardware-accelerated flashing tactical alarm beacon */
+.message.system-error .msg-body::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #ff3333;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ff3333, 0 0 18px #ff3333;
+  animation: coreMeltdownAlert 0.6s infinite ease-in-out;
+}
+
+/* 3. Alarm frequency modulation physics loop */
+@keyframes coreMeltdownAlert {
+  0% {
+    opacity: 0.2;
+    transform: translateY(-50%) scale(0.85);
+    box-shadow: 0 0 6px #ff3333;
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.3);
+    box-shadow: 0 0 18px #ff3333, 0 0 30px #ff3333;
+    /* Maximized warning flash bloom */
+  }
+
+  100% {
+    opacity: 0.2;
+    transform: translateY(-50%) scale(0.85);
+    box-shadow: 0 0 6px #ff3333;
+  }
+}
