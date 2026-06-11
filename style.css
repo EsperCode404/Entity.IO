@@ -769,77 +769,147 @@ html {
 }
 
 /* ==========================================
-   NEXT-LEVEL CYBERPUNK EMERGENCY TERMINAL CARD
+   CYBERPUNK HARDWARE MODAL OVERLAY PROTOCOL
    ========================================== */
 
-.message.system-error .msg-body {
-  position: relative;
-  display: block !important;
-  /* Changes to block to let our structured header layout wrap beautifully */
-  padding: 20px 25px 20px 50px !important;
-  /* Generous breathing room for internal elements */
-  margin: 20px 0;
-
-  /* HIGH-TECH HARDWARE FRAME */
-  background: rgba(12, 2, 2, 0.90) !important;
-  /* Ominous, solid tactical black-crimson hull */
-  border: 1px solid #ff1a1a !important;
-  /* Crisp, razor-thin lethal red frame */
-  border-left: 5px solid #ff1a1a !important;
-  /* Massive warning-stripe indicator edge */
-  border-radius: 2px;
-  /* Sharp, aggressive military-spec corners */
-
-  /* RADAR TEXT EMISSION MATRIX */
-  color: #ff3333 !important;
-  font-family: 'Fira Code', 'Courier New', monospace !important;
-  font-size: 0.85rem !important;
-  line-height: 1.6 !important;
-  letter-spacing: 1px !important;
-
-  /* ADVANCED LIGHT BLOOM */
-  text-shadow: 0 0 8px rgba(255, 51, 51, 0.7);
-  /* Deep text ignition */
-  box-shadow:
-    0 0 20px rgba(255, 26, 26, 0.25),
-    inset 0 0 15px rgba(255, 26, 26, 0.15);
-  /* Internal cockpit glow */
+/* 1. Viewport backdrop firewall block (Blurs background assets) */
+.cyber-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 5, 8, 0.85);
+  /* Deep translucent onyx backing */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999 !important;
+  /* Forces it to floating apex priority over all other panels */
+  animation: modalFadeIn 0.2s ease-out forwards;
 }
 
-/* Precision alignment for the flashing alert core beacon */
-.message.system-error .msg-body::before {
+/* 2. Central Alarm Housing Unit */
+.cyber-modal-card {
+  width: 420px;
+  background: rgba(14, 4, 4, 0.95);
+  /* Heavy ominous crimson-tinted obsidian */
+  border: 1px solid #ff3333;
+  box-shadow: 0 0 30px rgba(255, 51, 51, 0.25), inset 0 0 15px rgba(255, 51, 51, 0.15);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Corner structural hazard brackets matching your UI theme */
+.cyber-modal-card::before {
   content: '';
   position: absolute;
-  left: 22px;
-  top: 26px;
-  /* Pin it exactly near the top header line */
-  width: 10px;
-  height: 10px;
-  background-color: #ff1a1a;
-  border-radius: 50%;
-  box-shadow: 0 0 12px #ff1a1a, 0 0 22px #ff1a1a;
-  animation: tacticalMeltdownAlert 0.5s infinite ease-in-out;
-  /* Aggressive warning cycle */
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #ff3333;
+  border-left: 3px solid #ff3333;
 }
 
-/* High-frequency strobe loop */
-@keyframes tacticalMeltdownAlert {
-  0% {
-    opacity: 0.3;
-    transform: scale(0.9);
-    box-shadow: 0 0 8px #ff1a1a;
+/* 3. Header Segment Bar */
+.cyber-modal-header {
+  background: rgba(255, 51, 51, 0.15);
+  padding: 10px 15px;
+  color: #ff3333;
+  font-weight: bold;
+  font-size: 11px;
+  letter-spacing: 2px;
+  border-bottom: 1px solid rgba(255, 51, 51, 0.3);
+}
+
+/* 4. Core Body Warning Layout */
+.cyber-modal-body {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.warning-title {
+  color: #ff3333;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.6);
+}
+
+.warning-details {
+  color: #a0c0d0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.highlight-crimson {
+  color: #ff3333;
+  font-weight: bold;
+}
+
+.highlight-white {
+  color: #fff;
+}
+
+/* 5. Central [OK] Button Action Matrix */
+.cyber-modal-footer {
+  padding: 0 25px 25px 25px;
+  display: flex;
+  justify-content: center;
+  /* Locks button to horizontal center alignment */
+}
+
+.cyber-modal-btn {
+  background: rgba(255, 51, 51, 0.1);
+  border: 1px solid #ff3333;
+  color: #ff3333;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 8px 30px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.cyber-modal-btn:hover {
+  background: #ff3333;
+  color: #000000;
+  /* Text flips dark upon active system confirmation */
+  box-shadow: 0 0 15px #ff3333;
+}
+
+/* 6. Mechanical Deployment Animation Loops */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
   }
 
-  50% {
+  to {
     opacity: 1;
-    transform: scale(1.25);
-    box-shadow: 0 0 20px #ff1a1a, 0 0 35px #ff1a1a;
-    /* Maximum flare explosion */
+    transform: scale(1);
+  }
+}
+
+.cyber-modal-overlay.closing {
+  animation: modalFadeOut 0.2s ease-out forwards;
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
   }
 
-  100% {
-    opacity: 0.3;
-    transform: scale(0.9);
-    box-shadow: 0 0 8px #ff1a1a;
+  to {
+    opacity: 0;
+    transform: scale(0.96);
   }
 }

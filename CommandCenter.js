@@ -538,19 +538,39 @@ class CommandCenter {
       if (systemNotice) systemNotice.remove();
       console.error("Ollama Pipeline Error:", error);
 
-      // === LINE 541 CRITICAL OVERHAUL PROTOCOL ===
+      // === LINE 541 TOTAL POPUP OVERHAUL PROTOCOL ===
       const brokenModel = (this.activeModel || 'ENTITY').toUpperCase();
-      const errorDiagnostic =
-        `// ------------------- CRITICAL SYSTEM FAULT -------------------\n` +
-        `[ ALERT ] CORE LINK COOLDOWN // SYNCHRONIZATION HARD FAILURE\n` +
-        `// -------------------------------------------------------------\n` +
-        `> TERMINAL STATUS : DISCONNECTED\n` +
-        `> TARGET SUITE    : SYSTEM.LOCAL_NODE.${brokenModel}\n` +
-        `// -------------------------------------------------------------\n` +
-        `> LOG DATA        : OLLAMA CONSOLE OFFLINE ON PORT 11434\n` +
-        `> REMEDIAL ACTION : INITIALIZE LOCAL ENGINE // RESYNC HANDSHAKE`;
 
-      this.appendMessage('system-error', errorDiagnostic);
+      // 1. Structural framework layout definition
+      const modalContainer = document.createElement('div');
+      modalContainer.className = 'cyber-modal-overlay';
+
+      modalContainer.innerHTML = `
+  <div class="cyber-modal-card">
+    <div class="cyber-modal-header">
+      <span>[ SECURITY EXCEPTION DETECTED ]</span>
+    </div>
+    <div class="cyber-modal-body">
+      <p class="warning-title">SYSTEM LINK SEVERED</p>
+      <p class="warning-details">
+        Failed to establish pipeline synchronization with local node <span class="highlight-crimson">${brokenModel}</span>.<br>
+        Ollama service interface on <span class="highlight-white">127.0.0.1:11434</span> has timed out or is completely offline.
+      </p>
+    </div>
+    <div class="cyber-modal-footer">
+      <button class="cyber-modal-btn">OK</button>
+    </div>
+  </div>
+`;
+
+      // 2. Attach the modal layout container straight to the page viewport body
+      document.body.appendChild(modalContainer);
+
+      // 3. Execution event tracking: Close the alert when [OK] is deployed
+      modalContainer.querySelector('.cyber-modal-btn').addEventListener('click', () => {
+        modalContainer.classList.add('closing');
+        setTimeout(() => modalContainer.remove(), 200); // Clean removal after animation loop finishes
+      });
 
       if (this.cognitiveLoadFill) this.cognitiveLoadFill.style.width = '0%';
       if (this.syncFill) this.syncFill.style.width = '0%';
