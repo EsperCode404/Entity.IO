@@ -816,8 +816,11 @@ html {
 /* 3. Header Segment Bar */
 .cyber-modal-header {
   background: rgba(255, 51, 51, 0.15);
-  padding: 10px 15px;
+  padding: 12px 20px;
+  /* ALIGNMENT: Expanded padding bounds to pull text away from border corner */
   color: #ff3333;
+  font-family: var(--font-mono) !important;
+  /* TYPOGRAPHY: Strict monochrome enforcement */
   font-weight: bold;
   font-size: 11px;
   letter-spacing: 2px;
@@ -826,24 +829,31 @@ html {
 
 /* 4. Core Body Warning Layout */
 .cyber-modal-body {
-  padding: 25px;
+  padding: 30px 25px 20px 25px;
+  /* ALIGNMENT: Calibrated spacing metrics to match layout balance */
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .warning-title {
   color: #ff3333;
-  font-size: 18px;
+  font-family: var(--font-mono) !important;
+  /* TYPOGRAPHY: Strict monochrome enforcement */
+  font-size: 19px;
+  /* ALIGNMENT: Scaled visibility matrix */
   font-weight: 900;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-shadow: 0 0 10px rgba(255, 51, 51, 0.6);
 }
 
 .warning-details {
   color: #a0c0d0;
-  font-size: 13px;
-  line-height: 1.5;
+  font-family: var(--font-mono) !important;
+  /* TYPOGRAPHY: Strict monochrome enforcement */
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
 }
 
 .highlight-crimson {
@@ -853,11 +863,19 @@ html {
 
 .highlight-white {
   color: #fff;
+  font-weight: bold;
+}
+
+/* Auxiliary internal divider rule for data alignment grid */
+.matrix-divider {
+  color: rgba(255, 51, 51, 0.25);
+  letter-spacing: -1px;
 }
 
 /* 5. Central [OK] Button Action Matrix */
 .cyber-modal-footer {
-  padding: 0 25px 25px 25px;
+  padding: 10px 25px 30px 25px;
+  /* ALIGNMENT: Position tracking clearance below telemetry text */
   display: flex;
   justify-content: center;
   /* Locks button to horizontal center alignment */
@@ -867,11 +885,14 @@ html {
   background: rgba(255, 51, 51, 0.1);
   border: 1px solid #ff3333;
   color: #ff3333;
-  font-family: var(--font-mono);
+  font-family: var(--font-mono) !important;
+  /* TYPOGRAPHY: Strict monochrome enforcement */
   font-weight: bold;
-  font-size: 13px;
-  letter-spacing: 2px;
-  padding: 8px 30px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  /* TRACKING: Elite tactical interface spacing values */
+  padding: 10px 45px;
+  /* ALIGNMENT: Expanded button click targeting framework */
   cursor: pointer;
   border-radius: 2px;
   transition: all 0.2s ease;

@@ -551,10 +551,15 @@ class CommandCenter {
       <span>[ SECURITY EXCEPTION DETECTED ]</span>
     </div>
     <div class="cyber-modal-body">
-      <p class="warning-title">SYSTEM LINK SEVERED</p>
+      <p class="warning-title">COGNITIVE LINK SEVERED</p>
       <p class="warning-details">
-        Failed to establish pipeline synchronization with local node <span class="highlight-crimson">${brokenModel}</span>.<br>
-        Ollama service interface on <span class="highlight-white">127.0.0.1:11434</span> has timed out or is completely offline.
+        Selected Model : <span class="highlight-white">${brokenModel}</span><br>
+        Endpoint       : <span class="highlight-white">127.0.0.1:11434</span><br>
+        <span class="matrix-divider">--------------------------------------------------</span><br>
+        Failed to establish synchronization with the local inference network.<br>
+        The requested intelligence asset is currently unreachable.<br>
+        <span class="matrix-divider">--------------------------------------------------</span><br>
+        <span class="highlight-crimson">Automatic recovery protocols engaged...</span>
       </p>
     </div>
     <div class="cyber-modal-footer">
