@@ -11,7 +11,7 @@
   --text-main: #a0c0d0;
   --text-dim: #507080;
 
-  /* TYPOGRAPHY MATRIX OVERHAUL */
+  /* TYPOGRAPHY MATRIX */
   --font-display: 'Orbitron', sans-serif;
   --font-terminal: 'Share Tech Mono', monospace;
   --font-code: 'JetBrains Mono', monospace;
@@ -30,10 +30,8 @@ html {
   overflow: hidden;
   background: var(--bg-color);
   font-family: var(--font-terminal);
-  /* CORE DEPLOYMENT FIELD */
   color: var(--text-main);
   font-size: 15px;
-  /* Slightly scaled up for Share Tech Mono readability */
   letter-spacing: 0.5px;
 }
 
@@ -123,7 +121,6 @@ html {
   background: rgba(0, 255, 204, 0.1);
   padding: 8px 12px;
   font-family: var(--font-display);
-  /* HIGH-TECH DISPLAY OVERRIDE */
   font-weight: 700;
   color: var(--cyan);
   border-bottom: 1px solid var(--panel-border);
@@ -143,7 +140,6 @@ html {
   align-items: center;
   padding: 0 20px;
   font-family: var(--font-code);
-  /* Sleek values for top bar monitoring metadata */
   font-size: 12px;
 }
 
@@ -153,6 +149,30 @@ html {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* CORE HIGHLIGHT: SYS.UPTIME PARAMETERS */
+.sys-info .label:first-of-type,
+.sys-info .label:first-of-type+.value {
+  color: var(--amber) !important;
+  text-shadow: 0 0 8px rgba(255, 179, 0, 0.4);
+}
+
+/* RECALIBRATED ACTIVE LINK PROTOCOLS */
+.connection-info {
+  font-family: var(--font-terminal);
+  letter-spacing: 1.5px;
+}
+
+.connection-info .label {
+  color: var(--text-dim);
+}
+
+.connection-info .value {
+  color: var(--green) !important;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+  font-weight: 900;
+  padding-left: 4px;
 }
 
 .label {
@@ -249,10 +269,11 @@ html {
 .entity-list {
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 12px 10px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  /* Increased separation for structured grid block appearance */
 }
 
 .entity-list::-webkit-scrollbar {
@@ -263,49 +284,83 @@ html {
   background: var(--cyan);
 }
 
+/* NEXT-LEVEL 3RD GENERATION MODEL SELECTOR BOXES */
 .entity-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid transparent;
+  padding: 12px 14px;
+  background: linear-gradient(90deg, rgba(10, 20, 30, 0.4) 0%, rgba(5, 10, 15, 0.2) 100%);
+  border: 1px solid rgba(0, 255, 204, 0.08);
+  border-left: 2px solid rgba(80, 112, 128, 0.3);
   font-family: var(--font-terminal);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   cursor: pointer;
-  transition: all 0.2s;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .entity-item:hover {
-  background: rgba(0, 255, 204, 0.05);
-  border-color: rgba(0, 255, 204, 0.3);
+  background: linear-gradient(90deg, rgba(0, 255, 204, 0.06) 0%, rgba(0, 255, 204, 0.01) 100%);
+  border-color: rgba(0, 255, 204, 0.25);
+  border-left-color: var(--cyan);
+  padding-left: 17px;
+  /* Micro fluid indentation layout push */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
+/* THE ULTIMATE ACTIVE TARGET SYSTEM PROTOCOL */
 .entity-item.active {
-  background: rgba(0, 255, 204, 0.1);
-  border-color: var(--cyan);
-  border-left: 3px solid var(--cyan);
+  background: linear-gradient(90deg, rgba(0, 255, 204, 0.12) 0%, rgba(6, 12, 18, 0.6) 100%) !important;
+  border-color: rgba(0, 255, 204, 0.45) !important;
+  border-left: 4px solid var(--cyan) !important;
+  padding-left: 16px;
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.1), inset 0 0 10px rgba(0, 255, 204, 0.05);
+  animation: activePulse 4s infinite alternate;
+}
+
+.entity-item.active color {
+  color: #fff;
+}
+
+.entity-item.active .stat-label,
+.entity-item.active {
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes activePulse {
+  0% {
+    border-color: rgba(0, 255, 204, 0.3);
+  }
+
+  100% {
+    border-color: rgba(0, 255, 204, 0.6);
+  }
 }
 
 .entity-state {
   font-family: var(--font-code);
   font-size: 10px;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 2px;
   letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .state-online {
   background: rgba(57, 255, 20, 0.1);
   color: var(--green);
   border: 1px solid var(--green);
+  box-shadow: 0 0 6px rgba(57, 255, 20, 0.2);
 }
 
 .state-idle {
   background: rgba(255, 179, 0, 0.1);
   color: var(--amber);
   border: 1px solid var(--amber);
+  box-shadow: 0 0 6px rgba(255, 179, 0, 0.2);
 }
 
 .state-locked {
@@ -314,10 +369,13 @@ html {
   border: 1px solid var(--red);
 }
 
+/* RECALIBRATED WARNING CRIMSON OFFLINE INDICATOR */
 .state-offline {
-  background: rgba(80, 112, 128, 0.1);
-  color: var(--text-dim);
-  border: 1px solid var(--text-dim);
+  background: rgba(255, 51, 51, 0.1) !important;
+  color: var(--red) !important;
+  border: 1px solid var(--red) !important;
+  text-shadow: 0 0 4px rgba(255, 51, 51, 0.3);
+  box-shadow: 0 0 6px rgba(255, 51, 51, 0.15);
 }
 
 /* Center Panel */
@@ -363,7 +421,6 @@ html {
 
 .msg-header {
   font-family: var(--font-display);
-  /* Visual distinction for speaker headings */
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 1.5px;
@@ -519,7 +576,6 @@ html {
   padding: 10px;
   border: 1px solid var(--panel-border);
   font-family: var(--font-code);
-  /* Crisp monospacing for system background telemetry logs */
   font-size: 11px;
 }
 
@@ -553,7 +609,6 @@ html {
   color: var(--text-main);
   padding: 10px 20px;
   font-family: var(--font-display);
-  /* Bold structural design for main system button interactions */
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
@@ -825,7 +880,6 @@ html {
   box-shadow: 0 0 30px rgba(255, 51, 51, 0.25), inset 0 0 15px rgba(255, 51, 51, 0.15);
   border-radius: 4px;
   font-family: var(--font-terminal);
-  /* Updated configuration */
   overflow: hidden;
   position: relative;
 }
@@ -846,7 +900,6 @@ html {
   padding: 12px 20px;
   color: #ff3333;
   font-family: var(--font-display) !important;
-  /* Strict design lock */
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 2px;
@@ -863,7 +916,6 @@ html {
 .warning-title {
   color: #ff3333;
   font-family: var(--font-display) !important;
-  /* Strict design lock */
   font-size: 18px;
   font-weight: 900;
   letter-spacing: 1.5px;
@@ -873,7 +925,6 @@ html {
 .warning-details {
   color: #a0c0d0;
   font-family: var(--font-code) !important;
-  /* Uses code font variant to structure layout items evenly */
   font-size: 12px;
   line-height: 1.6;
   letter-spacing: 0.5px;
@@ -905,7 +956,6 @@ html {
   border: 1px solid #ff3333;
   color: #ff3333;
   font-family: var(--font-display) !important;
-  /* Strict design lock */
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 3px;
